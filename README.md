@@ -22,7 +22,8 @@ Le projet de débat en ligne permet aux utilisateurs de participer à des débat
 
 1. Clonez le repository en utilisant la commande suivante :
 
-```git clone https://github.com/votrenom/projet-debat-en-ligne.git
+```
+git clone https://github.com/votrenom/projet-debat-en-ligne.git
 
 ```
 
