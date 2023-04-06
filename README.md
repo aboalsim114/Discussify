@@ -23,19 +23,19 @@ Le projet de débat en ligne permet aux utilisateurs de participer à des débat
 1. Clonez le repository en utilisant la commande suivante :
 
 ```
-git clone https://github.com/votrenom/projet-debat-en-ligne.git
+git clone https://github.com/aboalsim114/Discussify.git
 
 ```
 
-2. Allez dans le dossier client et installez les dépendances en utilisant la commande suivante :
+2. Allez dans le dossier et installez les dépendances en utilisant la commande suivante :
 
-```cd client
+```cd Discussify
 npm install
 ```
 
-3. Allez dans le dossier server et installez les dépendances en utilisant la commande suivante :
+3. Allez dans le dossier Backend et installez les dépendances en utilisant la commande suivante :
 
-```cd ../server
+```cd ../Backend
 npm install
 ```
 
