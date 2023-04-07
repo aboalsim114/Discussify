@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from './Composants/Home'
 import Inscription from "./Composants/Inscription"
+import Connexion from "./Composants/Connexion"
 function App() {
   return (
     <Router>
@@ -16,11 +17,16 @@ function App() {
       
       
       <Route
-        exact
+        
         path="/inscription"
         element={<Inscription  />}
       />
       
+      <Route
+        
+        path="/connexion"
+        element={<Connexion  />}
+      />
      
     </Routes>
   </Router>
