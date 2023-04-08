@@ -9,7 +9,7 @@ export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/Dashboard')
+    axios.get('http://localhost:3001/api/Dashboard')
       .then(res => {
         setIsLoading(false);
       })

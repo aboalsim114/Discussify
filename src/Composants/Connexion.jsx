@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import Nav from "./Nav"
 import '../style/connexion.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link,redirect  } from 'react-router-dom';
 
 
 export default function Connexion() {
@@ -24,7 +24,7 @@ export default function Connexion() {
     axios.post(url,data)
     .then(res => {
       console.log(res);
-     
+      return redirect("/");
         
 
       
