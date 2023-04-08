@@ -54,8 +54,8 @@ Router.post('/', async(req, res) => {
         return res.redirect('/Dashboard');
     } else {
         console.log("logged in");
-        console.log(req.session.role);
-        console.log(req.session.username);
+        console.log("role sessions : ", req.session.role);
+        console.log("username sesssion : ", req.session.username);
         return res.redirect('/');
     }
 

@@ -22,11 +22,19 @@ app.use(session({
 
 
 
-mongoose.connect('mongodb://root:root@localhost:27017/', { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('Connexion à la base de données réussie !'))
-    .catch(() => console.log('Connexion à la base de données échouée.'));
+const MURL = "mongodb+srv://sami:1234@cluster0.p6wwavj.mongodb.net/Discussify?retryWrites=true&w=majority";
+mongoose.connect(MURL);
+
+const db = mongoose.connection;
+
+db.on("connected", () => {
+    console.log("connected to the database");
+})
 
 
+db.on("disconnected", () => {
+    console.log("disconnected to the database");
+})
 
 // Define a route for the homepage
 app.get('/', (req, res) => {
