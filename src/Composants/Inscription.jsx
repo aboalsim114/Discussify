@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Nav from "./Nav.jsx"
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import {useNavigate} from 'react-router-dom';
 
 
 export default function Inscription() {
@@ -11,7 +10,6 @@ export default function Inscription() {
   const [password, setPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage , setSuccessMessage] = useState("")
-  const navigate = useNavigate();
 
 
   const handleSubmit = async (e) => {
@@ -25,7 +23,6 @@ export default function Inscription() {
 
     let url = "http://localhost:3001/api/inscription";
     axios.post(url,data)
-    .then(res => res.json())
     .then(res => {
       console.log(res);
     

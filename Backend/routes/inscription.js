@@ -47,9 +47,11 @@ Router.post('/', async(req, res) => {
     const savedUser = await newUser.save();
 
     // Generate an authentication token
-
+    if (savedUser) {
+        return res.redirect('/connexion');
+    }
     console.log(email, username, password);
-    res.redirect('/connexion');
+
 
 });
 

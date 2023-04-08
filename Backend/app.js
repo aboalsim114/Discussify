@@ -42,6 +42,12 @@ app.use("/api/inscription", InscriptionRoute)
 const ConnexionRoute = require("./routes/Connexion")
 app.use("/api/connexion", ConnexionRoute)
 
+
+
+const DashboardRoute = require("./routes/Dashboard")
+app.use("/api/Dashboard", DashboardRoute)
+
+
 // Start the server
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);

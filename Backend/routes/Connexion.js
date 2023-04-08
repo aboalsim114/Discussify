@@ -51,8 +51,11 @@ Router.post('/', async(req, res) => {
 
     // Redirect to the dashboard if the user is an admin, else redirect to home
     if (user.role === 'admin') {
-        return res.redirect('/dashboard');
+        return res.redirect('/Dashboard');
     } else {
+        console.log("logged in");
+        console.log(req.session.role);
+        console.log(req.session.username);
         return res.redirect('/');
     }
 

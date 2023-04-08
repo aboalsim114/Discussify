@@ -3,14 +3,14 @@ import Nav from "./Nav"
 import '../style/connexion.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+
 
 export default function Connexion() {
   const [username,setUsername] = useState("");
   const [password,setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage , setSuccessMessage] = useState("");
-  const navigate = useNavigate();
+
 
 
   const handleSubmit = async (e) => {
@@ -25,7 +25,7 @@ export default function Connexion() {
     .then(res => {
       console.log(res);
      
-        navigate('/');
+        
 
       
     })

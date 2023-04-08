@@ -1,8 +1,8 @@
-# Projet de débat en ligne
+# Discussify - Projet de débat en ligne
 
 ## Description
 
-Le projet de débat en ligne permet aux utilisateurs de participer à des débats en ligne avec un temps de parole limité pour chaque participant. Le projet est basé sur une application web développée avec ReactJS et ExpressJS. Il est également utilisé une base de données MongoDB pour stocker les informations des utilisateurs.
+Discussify est une application web qui permet aux utilisateurs de participer à des débats en ligne avec un temps de parole limité pour chaque participant. Le projet est basé sur une stack MERN (MongoDB, ExpressJS, ReactJS et NodeJS).
 
 ## Fonctionnalités
 
@@ -46,3 +46,12 @@ npm install
 ```
 npm start
 ```
+
+## Développement
+
+# Stack technique
+
+- MongoDB : base de données NoSQL
+- ExpressJS : framework NodeJS pour les routes et les middlewares
+- ReactJS : bibliothèque JavaScript pour la construction de l'interface utilisateur
+- NodeJS : environnement d'exécution JavaScript
