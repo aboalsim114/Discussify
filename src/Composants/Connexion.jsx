@@ -2,16 +2,17 @@ import React,{useState} from 'react'
 import Nav from "./Nav"
 import '../style/connexion.css';
 import axios from 'axios';
-import { Link,redirect  } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 export default function Connexion() {
+
+  const history = useNavigate();
+
+  const navigate = useNavigate();
   const [username,setUsername] = useState("");
   const [password,setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage , setSuccessMessage] = useState("");
-
-
 
   const handleSubmit = async (e) => {
    e.preventDefault();
@@ -21,20 +22,30 @@ export default function Connexion() {
     };
 
     let url = "http://localhost:3001/api/connexion";
-    axios.post(url,data)
+   await  axios.post(url,data)
     .then(res => {
-      console.log(res);
-      return redirect("/");
-        
+     
+      if(res.data == "success"){
+        alert(res.data);
+        history("/ss");
+      }
 
+
+      else if(res.data == "Invalid password"){
+        return setErrorMessage(res.data);
+      }
+     
+
+      else if(res.data == "Invalid username"){
+        return setErrorMessage(res.data)
+      }
+      
       
     })
     .catch((err) => {
       setErrorMessage(err.response.data.message) 
     });
   };
-
-
 
   return (
     <>
@@ -58,10 +69,10 @@ export default function Connexion() {
               </div>
               <div class="row">
                 <div class="col-6">
-                <input type="submit" name="submit" value="connexion" className="btn btn-primary" />
+                <input type="submit"   className="btn btn-primary" />
                 </div>
                 <div class="col-6 text-right">
-                <p style={{color: errorMessage ? "red" : "green"}}>{errorMessage ? errorMessage : null}</p>
+                <p style={{color: "red"}}> {errorMessage} </p>
                 </div>
               </div>
             </div>

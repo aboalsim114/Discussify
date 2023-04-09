@@ -14,6 +14,10 @@ const isAdmin = (req, res, next) => {
 
 Router.get("/", isAdmin, async(req, res) => {
     try {
+        if (req.session.role !== "admin") {
+            throw new Error("User is not an admin");
+        }
+
         // get all users from the database
         const users = await User.find();
 

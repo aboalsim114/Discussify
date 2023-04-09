@@ -1,28 +1,25 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Nav from "./Nav"
 import '../style/connexion.css';
-import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
-  const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    axios.get('http://localhost:3001/api/Dashboard')
-      .then(res => {
-        setIsLoading(false);
-      })
-      .catch(err => {
-        navigate('/connexion');
-      });
-  }, [navigate]);
-
-  if (isLoading) {
-    return <div>Loading...</div>
-  }
-
   return (
-    <div>Dashboard</div>
+    <>
+    {sessionStorage.getItem("role") === "admin" ?
+      <div>
+        <Nav />
+        <div className='container mt-4'>
+          <h1>Dashboard</h1>
+        </div>
+      </div>
+      :
+      <div>
+        <Nav />
+        <div className='container mt-4'>
+          <p>L'accès non autorisé</p>
+        </div>
+      </div>
+    }
+    </>
   )
 }

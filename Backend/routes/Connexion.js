@@ -3,72 +3,70 @@ const Router = express.Router();
 const User = require("../model/Users");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
+const cors = require("cors");
+const bodyParser = require('body-parser');
 
-Router.use(express.json());
-Router.use(express.urlencoded({ extended: true }));
-Router.use(session({
-    secret: 'secret',
-    resave: false,
-    saveUninitialized: true
-}));
+Router.use(bodyParser.json());
 
-Router.get("/", (req, res) => {
-    res.send("connexion api");
-});
 
 Router.use((req, res, next) => {
     console.log(req.method, req.url, req.body);
     next();
 });
 
-Router.post('/', async(req, res, next) => {
+
+
+Router.post("/", async(req, res) => {
+
+    const { username, password } = req.body;
+
     try {
-        const { username, password } = req.body;
 
-        console.log(req.body.username);
-        console.log(req.body.password);
-
-        // Find the user by username
         const user = await User.findOne({ username });
 
-        // If the user does not exist, return an error message
-        if (!user) {
-            return res.status(400).json({ message: 'username invalide' });
-        }
+        if (user) {
+            const isPasswordMatch = await bcrypt.compare(password, user.password);
 
-        // Compare the password with the hashed password stored in the database
-        const passwordMatch = await bcrypt.compare(password, user.password);
+            if (isPasswordMatch) {
+                req.session.role = user.role;
+                req.session.id = user._id;
+                req.session.email = user.email;
 
-        // If the password does not match, return an error message
-        if (!passwordMatch) {
-            return res.status(400).json({ message: 'mot de passe invalide' });
-        }
+                res.json("success");
 
-        // Create a session
-        req.session.userId = user._id;
-        req.session.username = user.username;
-        req.session.role = user.role;
+            } else {
+                res.json("Invalid password");
+            }
 
-        // Redirect to the dashboard if the user is an admin, else redirect to home
-        if (user.role === 'admin') {
-            res.redirect('/Dashboard');
-            console.log("role sessions : ", req.session.role);
-            console.log("username sesssion : ", req.session.username);
-            return;
         } else {
-            console.log("logged in");
-            console.log("role sessions : ", req.session.role);
-            console.log("username sesssion : ", req.session.username);
-
+            res.json("Invalid username");
         }
-    } catch (error) {
-        console.error(`Error creating session: ${error.message}`);
-        next(error);
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Internal server error");
     }
 });
 
+
+
+Router.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error(`Error destroying session: ${err.message}`);
+            res.status(500).send('Internal server error');
+        } else {
+            res.redirect('/');
+        }
+    });
+});
+
+
+
+
 // Error handling middleware
 Router.use((err, req, res, next) => {
+    console.error(`Error: ${err.message}`);
     res.status(500).send('Internal server error');
 });
 

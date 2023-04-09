@@ -39,7 +39,7 @@ db.on("disconnected", () => {
 })
 
 // Define a route for the homepage
-app.get('/', (req, res) => {
+app.get('/', cors(), (req, res) => {
     res.send('Hello World!');
 });
 
