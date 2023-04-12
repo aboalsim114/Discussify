@@ -46,6 +46,10 @@ Router.post('/', async(req, res) => {
     // Save the user document to the database
     const savedUser = await newUser.save();
 
+    res.json({ savedUser })
+
+
+
 
 
 

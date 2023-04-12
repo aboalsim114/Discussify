@@ -8,44 +8,38 @@ import { Link, useNavigate } from 'react-router-dom';
 export default function Connexion() {
 
   const history = useNavigate();
+ 
 
-  const navigate = useNavigate();
+
   const [username,setUsername] = useState("");
   const [password,setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e) => {
-   e.preventDefault();
+    e.preventDefault();
     const data = {
       username: username,
-      password: password
+      password: password,
     };
-
-    let url = "http://localhost:3001/api/connexion";
-   await  axios.post(url,data)
-    .then(res => {
-     
-      if(res.data == "success"){
-        alert(res.data);
-        history("/ss");
-      }
-
-
-      else if(res.data == "Invalid password"){
-        return setErrorMessage(res.data);
-      }
-     
-
-      else if(res.data == "Invalid username"){
-        return setErrorMessage(res.data)
-      }
-      
-      
-    })
-    .catch((err) => {
-      setErrorMessage(err.response.data.message) 
-    });
+  
+    let url = "/api/connexion";
+    await axios
+      .post(url, data)
+      .then((res) => {
+        if (res.data.token) {
+          localStorage.setItem("token", res.data.token);
+          history("/logged");
+        } else if (res.data === "Invalid password") {
+          setErrorMessage(res.data);
+        } else if (res.data === "Invalid username") {
+          setErrorMessage(res.data);
+        }
+      })
+      .catch((err) => {
+        setErrorMessage(err.response.data.message);
+      });
   };
+  
 
   return (
     <>

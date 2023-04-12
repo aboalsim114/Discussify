@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Nav from "./Nav.jsx"
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 
 
 export default function Inscription() {
+  const history  = useNavigate()
   const [username , setUsername] = useState("")
   const [email , setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -21,9 +22,12 @@ export default function Inscription() {
     };
     
 
-    let url = "http://localhost:3001/api/inscription";
+    let url = "/api/inscription";
     axios.post(url,data)
     .then(res => {
+      if(res.data.savedUser ){
+        setSuccessMessage("votre compte a été crée")
+      }
       console.log(res);
     
 
@@ -84,6 +88,7 @@ export default function Inscription() {
 
                 </form>
                 <p style={{color: errorMessage ? "red" : "green"}}>{errorMessage ? errorMessage : null}</p>
+                <p style={{color:  "green"}}>{successMessage ? successMessage : null}</p>
               </div>
             </div>
           </div>

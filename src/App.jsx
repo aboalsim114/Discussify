@@ -6,6 +6,8 @@ import Home from './Composants/Home'
 import Inscription from "./Composants/Inscription"
 import Connexion from "./Composants/Connexion"
 import Dashboard from "./Composants/Dashboard"
+import PrivateRoutes from './utils/PrivateRoutes';
+import Logged from "./Composants/Logged"
 function App() {
   return (
     <Router>
@@ -29,11 +31,13 @@ function App() {
         element={<Connexion  />}
       />
 
-<Route
-        
-        path="/Dashboard"
-        element={<Dashboard  />}
-      />
+
+    <Route element={<PrivateRoutes /> }>
+      <Route path="/Dashboard" element={<Dashboard />} />
+      <Route path="/logged" element={<Logged />} />
+    </Route>
+    
+
      
     </Routes>
   </Router>
