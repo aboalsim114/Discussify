@@ -28,14 +28,21 @@ export default function Logged() {
   return (
     <>
     <Navlogged/>
-    <div className=' mt-4'>
-      
-      <p>User Name: {data.username}</p>
-        <p>User Email: {data.email}</p>
+    <div class="container-fluid gedf-wrapper mt-4">
+        <div class="row">
+            <div class="col-md-3" style={{position: "fixed"}}>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="h5">@{data.username}</div>
+                        <div class="h7 text-muted">pseudo  : {data.username} </div>
+                        <div class="h7">  {data.email} </div>
+                    </div>
+                    
+                </div>
+            </div>
+         {/* toDo */}
 
-        <p>Role : {data.role}</p>
-       
-
+        </div>
     </div>
     </>
   )

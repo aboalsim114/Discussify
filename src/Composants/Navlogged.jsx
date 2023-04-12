@@ -10,9 +10,9 @@ export default function Navlogged() {
   };
 
   return (
-    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-custom">
       <div class="container-fluid" bis_skin_checked="1">
-        <a class="navbar-brand">Navbar</a>
+        <a class="navbar-brand">Discussify </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,6 +27,7 @@ export default function Navlogged() {
           </ul>
         </div>
       </div>
+
     </nav>
   );
 }
