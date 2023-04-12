@@ -34,7 +34,7 @@ function App() {
 
     <Route element={<PrivateRoutes /> }>
       <Route path="/Dashboard" element={<Dashboard />} />
-      <Route path="/logged" element={<Logged />} />
+      <Route path="/logged/:userid" element={<Logged />} />
     </Route>
     
 

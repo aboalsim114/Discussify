@@ -3,6 +3,7 @@ import Nav from "./Nav"
 import '../style/connexion.css';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import jwt from "jsonwebtoken"; // Add this line
 
 
 export default function Connexion() {
@@ -27,8 +28,10 @@ export default function Connexion() {
       .post(url, data)
       .then((res) => {
         if (res.data.token) {
+          const decodedToken = jwt.decode(res.data.token);
+          const userId = decodedToken.userId; // Retrieve the user ID from the decoded token
           localStorage.setItem("token", res.data.token);
-          history("/logged");
+          history(`/logged/${userId}`);
         } else if (res.data === "Invalid password") {
           setErrorMessage(res.data);
         } else if (res.data === "Invalid username") {
