@@ -5,6 +5,9 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const jwt = require('jsonwebtoken')
+
+
 
 app.use(cors());
 app.use(express.json());

@@ -5,17 +5,21 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const crypto = require("crypto");
+const { customAlphabet } = require('nanoid');
+
+
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
 
-const generateJWTSecret = () => {
-    return crypto.randomBytes(64).toString("hex");
-};
 
+const generateJWTSecret = () => {
+    const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    const nanoid = customAlphabet(alphabet, 64);
+    return nanoid();
+};
 
 const JWT_SECRET = generateJWTSecret();
 
