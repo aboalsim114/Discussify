@@ -61,6 +61,9 @@ const DashboardRoute = require("./routes/Dashboard")
 app.use("/api/Dashboard", DashboardRoute)
 
 
+const ProfileRoute = require("./routes/Profile")
+app.use("/api/Profile", ProfileRoute)
+
 // Start the server
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);
