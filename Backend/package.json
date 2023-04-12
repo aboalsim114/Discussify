@@ -20,12 +20,12 @@
         "jsonwebtoken": "^9.0.0",
         "mongodb": "^5.2.0",
         "mongoose": "^7.0.3",
-        "nanoid": "^4.0.2",
-        "nodemon": "^2.0.22"
+        "nanoid": "^3.1.23",
+        "nodemon": "^2.0.22",
+        "react-jwt": "^1.1.8"
     },
     "description": "",
     "devDependencies": {
-        "esm": "^3.2.25",
-        "node-polyfill-webpack-plugin": "^2.0.1"
+        "esm": "^3.2.25"
     }
 }

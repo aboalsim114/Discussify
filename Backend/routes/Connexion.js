@@ -8,10 +8,10 @@ const bodyParser = require("body-parser");
 const { customAlphabet } = require('nanoid');
 
 
-
 const app = express();
 
 app.use(bodyParser.json());
+app.use(express.json())
 app.use(cors());
 
 
