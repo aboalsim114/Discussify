@@ -13,6 +13,8 @@ export default function Inscription() {
   const [successMessage , setSuccessMessage] = useState("")
 
 
+  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {

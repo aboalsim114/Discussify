@@ -11,20 +11,18 @@ export default function Connexion() {
   
   const history = useNavigate();
   const MySwal = withReactContent(Swal)
- 
-
-
+  
   const [username,setUsername] = useState("");
   const [password,setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
       username: username,
       password: password,
     };
-  
+    
     let url = "/api/connexion";
     await axios
       .post(url, data)
@@ -35,7 +33,8 @@ export default function Connexion() {
           const role = decodedToken.role;
           if(role === "admin")
           {
-            localStorage.setItem("token", res.data.token);
+            localStorage.setItem("tokenAdmin", res.data.token);
+            localStorage.removeItem("token")
             history("/Dashboard")
           }
           else{
@@ -48,6 +47,8 @@ export default function Connexion() {
             })
             
             localStorage.setItem("token", res.data.token);
+            localStorage.removeItem("tokenAdmin")
+
             history(`/logged/${userId}`);
           }
         } else if (res.data === "Invalid password") {
@@ -60,7 +61,7 @@ export default function Connexion() {
         setErrorMessage(err.response.data.message);
       });
   };
-  
+
 
   return (
     <>

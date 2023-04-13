@@ -1,9 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 export default function Navlogged() {
     const history = useNavigate()
   const handleLogout = () => {
     // Remove the JWT token from localStorage
+  
     localStorage.removeItem("token");
     // Redirect to the login page
    history("/connexion")
@@ -20,6 +21,9 @@ export default function Navlogged() {
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
               <a class="nav-link active" href="">Acceuil</a>
+            </li>
+            <li class="nav-item">
+             <Link to="/Profile" className="nav-link active">Profile </Link>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="" onClick={handleLogout}>Logout</a>

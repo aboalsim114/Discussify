@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import Navlogged from "./Navlogged"
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams,Link } from 'react-router-dom';
 
 export default function Logged() {
 
@@ -16,6 +16,9 @@ export default function Logged() {
 
       .then((response) => {
         setData(response.data);
+
+        localStorage.setItem("userid", response.data.id);
+        localStorage.getItem("userid", response.data.userId)
       })
       .catch((error) => {
         console.log(error);
@@ -36,7 +39,7 @@ export default function Logged() {
     <hr class="my-4"/>
     <p>Notre objectif est de fournir un espace sûr et inclusif où les utilisateurs peuvent partager leurs opinions, discuter de sujets importants et se connecter avec des personnes partageant les mêmes idées.</p>
     <p class="lead">
-      <a class="btn  bg-custom btn-lg" href="#" role="button">Commencer un debat </a>
+     <Link className='btn bg-custom btn-lg' to="/create-room">Commencer un debat</Link>
     </p>
   </div>
 </div>

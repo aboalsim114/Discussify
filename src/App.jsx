@@ -7,7 +7,10 @@ import Inscription from "./Composants/Inscription"
 import Connexion from "./Composants/Connexion"
 import Dashboard from "./Composants/Dashboard"
 import PrivateRoutes from './utils/PrivateRoutes';
+import PrivateRouteAdmin from "./utils/PrivateRouteAdmin";
 import Logged from "./Composants/Logged"
+import Profile from "./Composants/Profile"
+import CreateRoom from "./Composants/CreateRoom";
 function App() {
   return (
     <Router>
@@ -33,10 +36,17 @@ function App() {
 
 
     <Route element={<PrivateRoutes /> }>
-      <Route path="/Dashboard" element={<Dashboard />} />
       <Route path="/logged/:userid" element={<Logged />} />
+      <Route path="/create-room" element={<CreateRoom />} />
+      <Route path="/Profile" element={<Profile />} />
+
     </Route>
     
+    <Route element={<PrivateRouteAdmin/>}>
+      
+      <Route path="/Dashboard" element={<Dashboard />} exact />
+
+    </Route>
 
      
     </Routes>
