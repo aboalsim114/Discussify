@@ -30,8 +30,17 @@ export default function Connexion() {
         if (res.data.token) {
           const decodedToken = jwt.decode(res.data.token);
           const userId = decodedToken.userId; // Retrieve the user ID from the decoded token
-          localStorage.setItem("token", res.data.token);
-          history(`/logged/${userId}`);
+          const role = decodedToken.role;
+          if(role === "admin")
+          {
+            localStorage.setItem("token", res.data.token);
+            history("/Dashboard")
+          }
+          else{
+
+            localStorage.setItem("token", res.data.token);
+            history(`/logged/${userId}`);
+          }
         } else if (res.data === "Invalid password") {
           setErrorMessage(res.data);
         } else if (res.data === "Invalid username") {
