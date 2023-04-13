@@ -4,11 +4,13 @@ import '../style/connexion.css';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import jwt from "jsonwebtoken"; // Add this line
-
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 export default function Connexion() {
-
+  
   const history = useNavigate();
+  const MySwal = withReactContent(Swal)
  
 
 
@@ -37,7 +39,14 @@ export default function Connexion() {
             history("/Dashboard")
           }
           else{
-
+            Swal.fire({
+              icon: 'success',
+              title: `Bienvenue!`,
+              text: 'Vous êtes connecté.',
+              showConfirmButton: false,
+              timer: 4000
+            })
+            
             localStorage.setItem("token", res.data.token);
             history(`/logged/${userId}`);
           }
